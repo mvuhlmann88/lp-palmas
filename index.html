@@ -796,7 +796,7 @@
 
   <!-- ═══════════════════════════════════════════════════════
        WHATSAPP FLOAT
-  ════════════════════════════════════════════════════════ -->
+
   <a class="whatsapp-float" data-wa="geral" href="#" aria-label="Falar pelo WhatsApp" title="Falar pelo WhatsApp">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
       <path
@@ -805,6 +805,7 @@
         d="M12 0C5.373 0 0 5.373 0 12c0 2.119.554 4.106 1.523 5.827L.057 23.882a.5.5 0 0 0 .61.61l6.055-1.466A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.806 9.806 0 0 1-5.015-1.374l-.36-.213-3.722.901.917-3.628-.234-.374A9.794 9.794 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z" />
     </svg>
   </a>
+  ════════════════════════════════════════════════════════ -->
 
   <!-- SR utility class -->
   <style>
@@ -820,6 +821,39 @@
       border: 0
     }
   </style>
+
+  <!-- POPUP LEAD -->
+  <div id="lead-overlay" style="display:none;" aria-modal="true" role="dialog" aria-labelledby="popup-title">
+    <div id="lead-popup">
+      <button id="lead-close" aria-label="Fechar">&times;</button>
+      <h2 id="popup-title">Fale com um especialista</h2>
+      <p>Preencha seus dados e entraremos em contato pelo WhatsApp agora mesmo.</p>
+      <form id="lead-form" novalidate>
+        <div class="lead-field">
+          <label for="lead-nome">Nome completo</label>
+          <input type="text" id="lead-nome" placeholder="Seu nome" required>
+        </div>
+        <div class="lead-field">
+          <label for="lead-tel">WhatsApp</label>
+          <input type="tel" id="lead-tel" placeholder="(47) 99999-9999" required>
+        </div>
+        <div class="lead-field">
+          <label for="lead-email">E-mail</label>
+          <input type="email" id="lead-email" placeholder="seu@email.com" required>
+        </div>
+        <div class="lead-check">
+          <input type="checkbox" id="lead-consent" required>
+          <label for="lead-consent">Eu concordo em receber comunicações e ofertas de acordo com o meu interesse.</label>
+        </div>
+        <button type="submit" id="lead-submit" disabled>Quero ser contactado</button>
+      </form>
+      <div id="lead-success" style="display:none;">
+        <div class="lead-success-icon">✅</div>
+        <h3>Obrigado pelas informações!</h3>
+        <p>Entraremos em contato agora mesmo pelo seu WhatsApp.</p>
+      </div>
+    </div>
+  </div>
 
   <!-- JS -->
   <script src="assets/js/main.js"></script>

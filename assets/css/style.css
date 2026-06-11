@@ -1266,3 +1266,134 @@ ul {
     right: 20px;
   }
 }
+/* ── POPUP LEAD ── */
+#lead-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,15,50,.75);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+#lead-popup {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 40px 36px;
+  max-width: 460px;
+  width: 100%;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+}
+
+#lead-popup h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--blue-dk);
+  margin-bottom: 8px;
+}
+
+#lead-popup > p {
+  font-size: 14px;
+  color: var(--gray-600);
+  margin-bottom: 24px;
+  line-height: 1.55;
+}
+
+#lead-close {
+  position: absolute;
+  top: 16px; right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--gray-400);
+  cursor: pointer;
+  line-height: 1;
+}
+#lead-close:hover { color: var(--gray-800); }
+
+.lead-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.lead-field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-800);
+}
+
+.lead-field input {
+  font-family: var(--font);
+  font-size: 14px;
+  padding: 11px 14px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  color: var(--gray-900);
+  outline: none;
+  transition: border-color var(--t);
+}
+.lead-field input:focus { border-color: var(--blue); }
+.lead-field input.error { border-color: #E53E3E; }
+
+.lead-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.lead-check input[type="checkbox"] {
+  width: 18px; height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  accent-color: var(--blue);
+  cursor: pointer;
+}
+
+.lead-check label {
+  font-size: 13px;
+  color: var(--gray-600);
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+#lead-submit {
+  width: 100%;
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px;
+  border-radius: var(--radius-pill);
+  border: none;
+  background: var(--yellow);
+  color: var(--blue-dk);
+  cursor: pointer;
+  transition: background var(--t), opacity var(--t);
+}
+#lead-submit:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+#lead-submit:not(:disabled):hover { background: var(--yellow-dk); }
+
+#lead-success {
+  text-align: center;
+  padding: 20px 0;
+}
+.lead-success-icon { font-size: 48px; margin-bottom: 16px; }
+#lead-success h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--blue-dk);
+  margin-bottom: 8px;
+}
+#lead-success p {
+  font-size: 15px;
+  color: var(--gray-600);
+}

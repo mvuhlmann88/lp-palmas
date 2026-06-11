@@ -13,30 +13,96 @@
   );
   const WA_BASE = `https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`;
 
-  /* ── WhatsApp links ─────────────────────────────────────── */
-  // Inject correct WA link in every [data-wa] element
-  document.querySelectorAll('[data-wa]').forEach(function (el) {
-    const plan = el.getAttribute('data-wa');
-    let msg = 'Olá! Vim pela página de São Francisco do Sul e quero contratar a internet da Palmasnet.';
+  // /* ── WhatsApp links ─────────────────────────────────────── */
+  // // Inject correct WA link in every [data-wa] element
+  // document.querySelectorAll('[data-wa]').forEach(function (el) {
+  //   const plan = el.getAttribute('data-wa');
+  //   let msg = 'Olá! Vim pela página de São Francisco do Sul e quero contratar a internet da Palmasnet.';
 
-    if (plan === '500') msg = 'Olá! Vim pela LP de SFS e quero saber mais sobre o plano de 500 Mega por R$ 109,90.';
-    if (plan === '800') msg = 'Olá! Vim pela LP de SFS e tenho interesse no plano de 800 Mega por R$ 119,90.';
-    if (plan === 'cam') msg = 'Olá! Vim pela LP de SFS e quero saber mais sobre o plano de 800 Mega com câmera por R$ 139,90.';
-    if (plan === 'combo') msg = 'Olá! Vim pela LP de SFS e quero saber mais sobre o Combo São Chico (800 Mega + 50 GB 5G) por R$ 169,90.';
-    if (plan === 'geral') msg = 'Olá! Vim pela página de São Francisco do Sul e quero contratar a internet da Palmasnet.';
+  //   if (plan === '500') msg = 'Olá! Vim pela LP de SFS e quero saber mais sobre o plano de 500 Mega por R$ 109,90.';
+  //   if (plan === '800') msg = 'Olá! Vim pela LP de SFS e tenho interesse no plano de 800 Mega por R$ 119,90.';
+  //   if (plan === 'cam') msg = 'Olá! Vim pela LP de SFS e quero saber mais sobre o plano de 800 Mega com câmera por R$ 139,90.';
+  //   if (plan === 'combo') msg = 'Olá! Vim pela LP de SFS e quero saber mais sobre o Combo São Chico (800 Mega + 50 GB 5G) por R$ 169,90.';
+  //   if (plan === 'geral') msg = 'Olá! Vim pela página de São Francisco do Sul e quero contratar a internet da Palmasnet.';
 
-    const href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+  //   const href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 
-    if (el.tagName === 'A') {
-      el.href = href;
-      el.target = '_blank';
-      el.rel = 'noopener noreferrer';
+  //   if (el.tagName === 'A') {
+  //     el.href = href;
+  //     el.target = '_blank';
+  //     el.rel = 'noopener noreferrer';
+  //   } else {
+  //     el.addEventListener('click', function () {
+  //       window.open(href, '_blank', 'noopener,noreferrer');
+  //     });
+  //   }
+  // });
+
+  /* ── Popup lead ── */
+var overlay  = document.getElementById('lead-overlay');
+var form     = document.getElementById('lead-form');
+var success  = document.getElementById('lead-success');
+var consent  = document.getElementById('lead-consent');
+var submit   = document.getElementById('lead-submit');
+var closeBtn = document.getElementById('lead-close');
+
+function openPopup() {
+  overlay.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closePopup() {
+  overlay.style.display = 'none';
+  document.body.style.overflow = '';
+  form.reset();
+  form.style.display = '';
+  success.style.display = 'none';
+  submit.disabled = true;
+}
+
+// Abre popup em todos os botões CTA
+document.querySelectorAll('[data-wa]').forEach(function (el) {
+  el.addEventListener('click', function (e) {
+    e.preventDefault();
+    openPopup();
+  });
+});
+
+// Fecha ao clicar fora ou no X
+closeBtn.addEventListener('click', closePopup);
+overlay.addEventListener('click', function (e) {
+  if (e.target === overlay) closePopup();
+});
+
+// Fecha com ESC
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') closePopup();
+});
+
+// Habilita botão só com checkbox marcado
+consent.addEventListener('change', function () {
+  submit.disabled = !this.checked;
+});
+
+// Envio do formulário
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+  // Validação básica
+  var ok = true;
+  ['lead-nome', 'lead-tel', 'lead-email'].forEach(function (id) {
+    var input = document.getElementById(id);
+    if (!input.value.trim()) {
+      input.classList.add('error');
+      ok = false;
     } else {
-      el.addEventListener('click', function () {
-        window.open(href, '_blank', 'noopener,noreferrer');
-      });
+      input.classList.remove('error');
     }
   });
+  if (!ok) return;
+  // Exibe sucesso
+  form.style.display = 'none';
+  success.style.display = 'block';
+});
 
   /* ── Sticky header ──────────────────────────────────────── */
   var header = document.getElementById('header');
