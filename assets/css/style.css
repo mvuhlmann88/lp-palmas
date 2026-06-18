@@ -471,7 +471,7 @@ ul {
 }
 
 .plan-name {
-  font-size: 22px;
+  font-size: 42px;
   font-weight: 800;
   color: var(--gray-900);
   margin-bottom: 4px;
@@ -501,7 +501,7 @@ ul {
 }
 
 .plan-price .amount {
-  font-size: 200px;
+  font-size: 55px;
   font-weight: 800;
   color: var(--blue-dk);
   line-height: 1;
